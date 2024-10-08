@@ -44,7 +44,7 @@ public class QAlegendCustomerGroupPage {
 			
 		}
 
-		public String insertCustomerGroup() throws IOException {
+		public String insertCustomerGroup(String excelfilepath8, String sheetname) throws IOException {
 			
 			String customergroupname=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addACustomerGroup.xlsx","Sheet1");
        	    String calculationpercentage=ExcelUtilities.getNumeric(1, 1, "//src//main//java//resources//addACustomerGroup.xlsx","Sheet1");
@@ -63,8 +63,12 @@ public class QAlegendCustomerGroupPage {
 			PageUtilities.clickOnElement(searchTextBox);
 		}
 
-		public String Customergroupbox(String customergroupname) {
-			//PageUtilities.enterText(Customergroupbox, customergroupname);
-			return customergroupname;
+		public void customerGroupNameSearch(String customergroupname2) {
+			PageUtilities.clickOnElement(Customergroupbox);
+		}
+
+		public String Customergroupbox(String customergroupname2) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

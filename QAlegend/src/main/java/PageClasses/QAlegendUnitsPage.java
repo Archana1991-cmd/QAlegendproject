@@ -55,7 +55,7 @@ public class QAlegendUnitsPage {
 	}
 	
 	
-	public String insertUnits() throws IOException {
+	public String insertUnits(String excelfilepath7, String sheetname) throws IOException {
 		 String name=ExcelUtilities.getString(1, 0, "\\src\\main\\java\\resources\\addUnits.xlsx", "Sheet1");
 		 String shortname=ExcelUtilities.getString(1, 1, "\\src\\main\\java\\resources\\addUnits.xlsx", "Sheet1");
 		 String allowdecimal=ExcelUtilities.getString(1, 2, "\\src\\main\\java\\resources\\addUnits.xlsx", "Sheet1");

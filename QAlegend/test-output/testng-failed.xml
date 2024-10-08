@@ -9,7 +9,7 @@
     <classes>
       <class name="QAlegendTestCases.TestCases">
         <methods>
-          <include name="verifyAddSalesCommission"/>
+          <include name="verifyAddBrands"/>
           <include name="initialization"/>
         </methods>
       </class> <!-- QAlegendTestCases.TestCases -->

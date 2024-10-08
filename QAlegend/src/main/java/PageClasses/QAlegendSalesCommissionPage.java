@@ -71,8 +71,9 @@ public class QAlegendSalesCommissionPage {
     public void clickOnsaveButton() {
 		PageUtilities.clickOnElement(savebutton);	
 	}
-    public void searchCommissionAgent(String email) {
+    public String searchCommissionAgent(String email) {
 		PageUtilities.enterText(Searchbox, email);
+		return email;
 	}
     public boolean emailCellFinder() {
 		return successmessage.isDisplayed();

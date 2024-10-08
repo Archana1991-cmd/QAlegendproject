@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import Utilities.ExcelUtilities;
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
 
 
 public class QAlegendBrandsPage {
@@ -53,7 +54,7 @@ public class QAlegendBrandsPage {
         	addbutton.click();
 		}
 
-		public String insertOnBrandNameBox() throws IOException {
+		public String insertOnBrandNameBox(String excelfilepath5, String sheetname) throws IOException {
 			 String brandnameBox=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addBrands.xlsx", "Sheet1");
 			 PageUtilities.enterText(BrandNameBox, brandnameBox);
 			 return brandnameBox;
@@ -65,15 +66,18 @@ public class QAlegendBrandsPage {
 			
 		}
 		public void clickOnSaveButton() {
-			PageUtilities.clickOnElement(savebutton);
+			 PageUtilities.clickOnElement(savebutton);
 			
 		}
 	    public void enterUsersearch(String brandnameBox) {
-			    PageUtilities.enterText(searchbox, brandnameBox);
+	    	   
+			   PageUtilities.enterText(searchbox, brandnameBox);
 		}
 
-		public boolean MatchingRecordsFound() {
-			return (PageUtilities.isElementDisplayed(brandErrorMessege));
+		public String NoMatchingRecordsFound() {
+			brandErrorMessege.isDisplayed();
+			return toString();
+			//return (PageUtilities.isElementDisplayed(brandErrorMessege));
 		}
 		
 }	

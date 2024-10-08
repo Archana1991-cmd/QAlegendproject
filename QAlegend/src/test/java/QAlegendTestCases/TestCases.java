@@ -111,7 +111,7 @@ public class TestCases extends BaseClass{
              Assert.assertEquals(rolespage.roleAddSearch(rolename),rolename);
          }
          
-         @Test//(retryAnalyzer = RetryAnalyzer.class)
+         @Test(retryAnalyzer = RetryAnalyzer.class)
          public void verifyAddSalesCommission() throws IOException{
             
         	 loginpage.loginToQAlegend(prop.getProperty("username"),prop.getProperty("password"));
@@ -133,27 +133,24 @@ public class TestCases extends BaseClass{
         	 homepage.clickOnContactsOption();
         	 supplierspage.clickOnSuppliersOption();
         	 supplierspage.clickOnAddButton();
-             
-  		     
-  			 String businessname=supplierspage.insertSuppliers();
-  			 supplierspage.clickOnSaveButton();
-  			 supplierspage.searchSupplierButton(businessname);
-  			 Assert.assertEquals(supplierspage.businessnamemesseger(),businessname);
+             String businessname=supplierspage.insertSuppliers(excelfilepath3,"Sheet1");
+  			 supplierspage.clickOnSaveButton(businessname);
+  			 supplierspage.nameinSupplierTextBox();
+  			 Assert.assertEquals(supplierspage.searchSupplierBox(businessname),businessname);
   		    
 		}
-         @Test(retryAnalyzer = RetryAnalyzer.class)
+         
+       @Test(retryAnalyzer = RetryAnalyzer.class)
        public void verifyAddCustomer() throws IOException, InterruptedException {
         	 
         	 loginpage.loginToQAlegend(prop.getProperty("username"),prop.getProperty("password"));
         	 homepage.clickOnContactsOption();
         	 customerpage.clickOnCustomerOption();
         	 customerpage.clickOnCustomerAddOption();
-        	 
-        	
-        	 String name=customerpage.insertSuppliers();
+        	 String name=customerpage.insertCustomers(excelfilepath4,"Sheet1");
         	 customerpage.clickOnSaveButton();
-        	 customerpage.searchbutton(name);
-        	 Assert.assertEquals(customerpage.namebox(name), name);
+        	 customerpage.searchBox(name);
+        	 Assert.assertEquals(customerpage.searchBox(name), name);
         } 
          @Test(retryAnalyzer = RetryAnalyzer.class)
          public void verifyAddCustomerGroup() throws IOException {
@@ -162,10 +159,11 @@ public class TestCases extends BaseClass{
         	 homepage.clickOnContactsOption();
         	 customergrouppage.clickOnCustomerGroupOption();
         	 customergrouppage.clickOnCustomerGroupAddOption();
-        	 
-        	 String customergroupname=customergrouppage.insertCustomerGroup();
+        	 String customergroupname=customergrouppage.insertCustomerGroup(excelfilepath8,"Sheet1");
         	 customergrouppage.clickOnSaveButton();
  			 customergrouppage.searchcreateCustomerGroup(customergroupname);
+ 			 customergrouppage.customerGroupNameSearch(customergroupname);
+ 			 customergrouppage.Customergroupbox(customergroupname);
 			 Assert.assertEquals(customergrouppage.Customergroupbox(customergroupname),customergroupname);
  			 
 		}
@@ -176,37 +174,39 @@ public class TestCases extends BaseClass{
         	 unitspage.clickOnProductsOption();
         	 unitspage.clickOnUnitsOption();
         	 unitspage.clickOnAddbutton();
-             
- 			 String name=unitspage.insertUnits();
+             String name=unitspage.insertUnits(excelfilepath7,"Sheet1");
  			 unitspage.clickOnSaveButton();
  			 unitspage.enterUserSearchbutton(name);
+ 			 unitspage.noMatchingRecordsFound();
  			 Assert.assertEquals(unitspage.noMatchingRecordsFound(),name);
 		}
-         @Test//(retryAnalyzer = RetryAnalyzer.class)
+         @Test(retryAnalyzer = RetryAnalyzer.class)
          public void verifyAddCategories() throws IOException {
         	 
         	 loginpage.loginToQAlegend(prop.getProperty("username"),prop.getProperty("password"));
  			 categoriespage.clickOnProductsOption();
         	 categoriespage.clickOnCategoriesOption();
         	 categoriespage.clickOnAddButton();
- 		     String categoriesname=categoriespage.insertOnCategoriesNameBox();
+ 		     String categoriesname=categoriespage.insertOnCategoriesNameBox(excelfilepath6,"Sheet1");
  			 categoriespage.insertOnCategoryCodeBox();
  			 categoriespage.clickOnSaveButton();
  			 categoriespage.enterUsersearch(categoriesname);
+ 			 categoriespage.NoMatchingRecordsFound();
  			 Assert.assertEquals(categoriespage.NoMatchingRecordsFound(),categoriesname);
  		}
          @Test(retryAnalyzer = RetryAnalyzer.class)
-         public void verifyAddBrands() throws IOException {
+         public void verifyAddBrand() throws IOException {
         	 
         	 loginpage.loginToQAlegend(prop.getProperty("username"),prop.getProperty("password"));
         	 brandspage.clickOnProductsOption();
  			 brandspage.clickOnBrandsOption();
  			 brandspage.clickOnAddButton();
- 			 String brandnameBox=brandspage.insertOnBrandNameBox();
+ 			 String brandnameBox=brandspage.insertOnBrandNameBox(excelfilepath5,"Sheet1");
  			 brandspage.insertOnshortdiscriptionBox();
  			 brandspage.clickOnSaveButton();
  			 brandspage.enterUsersearch(brandnameBox);
- 		     Assert.assertEquals(brandspage.MatchingRecordsFound(),true);   
+ 			 brandspage.NoMatchingRecordsFound();
+ 		     Assert.assertEquals(brandspage.NoMatchingRecordsFound(),brandnameBox);   
  		}
          
 }

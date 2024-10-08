@@ -29,54 +29,51 @@ public class QAlegendSuppliersPage {
 	WebElement Mobile;
 	@FindBy(xpath = "//button[text()='Save']")
 	WebElement savebutton;
-	@FindBy(xpath ="//th[text()='Business Name']")
-    WebElement Businessnamebox;
+	@FindBy(xpath = "//input[@class='form-control input-sm']")
+	WebElement searchbox;
 	@FindBy(xpath = "//th[text()='Business Name']")
-    WebElement businessnamemesseger1;
+    WebElement businessnamemesseger;
+	@FindBy(xpath = "//th[@class='sorting_asc']")
+	WebElement namebox;
+	
 	public QAlegendSuppliersPage(WebDriver driver) {
-		
-			this.driver=driver;
+		    this.driver=driver;
 			PageFactory.initElements(driver, this);
 		
 	}
-
-	public void clickOnSuppliersOption() {
-		PageUtilities.clickOnElement(suppliersoption);
-		
+    public void clickOnSuppliersOption() {
+		suppliersoption.click();
 	}
 
 	public void clickOnAddButton() {
-		PageUtilities.clickOnElement(addbutton);
-		
+		addbutton.click();
 	}
-	public String insertSuppliers() throws IOException {
-		     String contacttype=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1");
-			 String name=ExcelUtilities.getString(1, 1, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1");
-			 String businessname=fakerUtility.randomNumberGenerator()+ExcelUtilities.getString(1, 2, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1");
-			 String mobile= fakerUtility.randomNumberGenerator()+ExcelUtilities.getNumeric(1, 3, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1"); 
-		
-	    PageUtilities.dropdownSelectByVisibleText(Contacttype, contacttype);
-		PageUtilities.enterText( Name, name);
-		PageUtilities.enterText(Businessname, businessname);
-		PageUtilities.enterText(Mobile, mobile);
+	public String insertSuppliers(String excelfilepath3, String sheetname) throws IOException {
+		 String contacttype=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1");
+		 String name=ExcelUtilities.getString(1, 1, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1");
+		 String businessname=fakerUtility.randomNumberGenerator()+ExcelUtilities.getString(1, 2, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1");
+		 String mobile= fakerUtility.randomNumberGenerator()+ExcelUtilities.getNumeric(1, 3, "//src//main//java//resources//addSuppliers.xlsx", "Sheet1"); 
+		    PageUtilities.dropdownSelectByVisibleText(Contacttype, "Suppliers");
+			PageUtilities.enterText( Name, name);
+			PageUtilities.enterText(Businessname, businessname);
+			PageUtilities.enterText(Mobile, mobile);
+			return businessname;   
+	    
+    }
+    public void clickOnSaveButton(String saveButton) {
+		savebutton.click();
+	}
+    public String searchSupplierBox(String businessname) {
+		PageUtilities.enterText(searchbox, businessname);
 		return businessname;
-}
-
-
-	public void clickOnSaveButton() {
-		PageUtilities.clickOnElement(savebutton);
+	}
+    public boolean businessnamemesseger() {
+		return businessnamemesseger.isDisplayed();
+	}
+	public void nameinSupplierTextBox() {
+		PageUtilities.clickOnElement(namebox);
 		
 	}
-
-	public void searchSupplierButton(String businessname) {
-		PageUtilities.enterText(Businessnamebox, businessname);
-	}
-
-	public boolean businessnamemesseger() {
-		
-		return businessnamemesseger1.isDisplayed();
-	}
-	
 	
 	
 }

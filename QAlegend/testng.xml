@@ -5,9 +5,9 @@
 		 <listener class-name="QAlegendTestCases.Listeners"></listener>
 	</listeners>
 	<parameter name="Browser" value="Edge"></parameter>
-  <test thread-count="5" name="Test" >
+  <test thread-count="5" name="Test" parallel="methods" >
 	<!--<groups>
-		<run>parallel="methods"
+		<run>
 			<include name="smoketest"></include>
 		</run>
 	</groups>-->
@@ -15,9 +15,17 @@
       <class name="QAlegendTestCases.TestCases">
       <methods>
 		
+		 <include name="verifyAddUser"></include>
+		<include name="verifyDeleteUser"></include>
+		 <include name="verifyAddRoles"></include>
 		 <include name="verifyAddSalesCommission"></include>
-		 
-		 
+		 <include name="verifyAddSuppliers"></include>
+		 <include name="verifyAddCustomer"></include>
+		 <include name="verifyAddCustomerGroup"></include>
+		 <include name="verifyAddUnits"></include>
+		 <include name="verifyAddCategories"></include>
+		 <include name="verifyAddBrand"></include>
+		
 		 </methods>
 	  </class>
 	   </classes>

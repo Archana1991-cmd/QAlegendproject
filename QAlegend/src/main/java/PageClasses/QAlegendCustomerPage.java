@@ -28,11 +28,10 @@ public class QAlegendCustomerPage {
    WebElement Contactidbox;
    @FindBy(id="mobile")
    WebElement Mobilebox;
- 
    @FindBy(xpath="//button[text()='Save']")
    WebElement Savebutton;
-
-private WebElement namebox;
+   @FindBy(xpath = "//input[@class='form-control input-sm']")
+   WebElement searchBox;
    
    
    public QAlegendCustomerPage(WebDriver driver) {
@@ -49,12 +48,12 @@ private WebElement namebox;
 	    PageUtilities.clickOnElement(customerAddOption);
 	}
  
-	public String insertSuppliers() throws IOException {
+	public String insertCustomers(String excelfilepath4, String sheetname) throws IOException {
 		 String contacttype=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
     	 String name=ExcelUtilities.getString(1, 1, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
     	 String contactid=fakerUtility.randomNumberGenerator()+ExcelUtilities.getNumeric(1, 2, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
     	 String mobile=ExcelUtilities.getNumeric(1, 3, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
-		PageUtilities.dropdownSelectByVisibleText(Contacttypebox, contacttype);
+		PageUtilities.dropdownSelectByVisibleText(Contacttypebox, "Customers");
 		PageUtilities.enterText(Namebox, name);
 		PageUtilities.enterText(Contactidbox, contactid);
 		PageUtilities.enterText(Mobilebox, mobile);
@@ -63,14 +62,8 @@ private WebElement namebox;
     public void clickOnSaveButton() {
 		PageUtilities.clickOnElement(Savebutton);
 	}
-	public String namebox(String name) {
-		PageUtilities.enterText(namebox,name);
-	    return name;
+	public String searchBox(String Namebox) {
+		PageUtilities.clickOnElement(searchBox);
+		return Namebox;
 	}
-
-	public void searchbutton(String name) {
-		PageUtilities.enterText(Namebox, name);
-		
-	}
-	
 }

@@ -47,7 +47,7 @@ public class QAlegendCategoriesPage {
 			   PageUtilities.clickOnElement(addbutton);
 			
 		}
-		public String insertOnCategoriesNameBox() throws IOException {
+		public String insertOnCategoriesNameBox(String excelfilepath6, String sheetname) throws IOException {
 			 String categoriesname=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addCategory.xlsx", "Sheet1");
 			 PageUtilities.enterText(CategoriesNamebox, categoriesname);
 			 return categoriesname;

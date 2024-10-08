@@ -1,15 +1,18 @@
 package Utilities;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import Utilities.WaitUtilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtilities {
         static WebDriver driver;
-       
+	
        public WaitUtilities(WebDriver driver) {
   		 this.driver=driver;
   		 
