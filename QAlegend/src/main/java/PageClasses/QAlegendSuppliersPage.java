@@ -29,7 +29,7 @@ public class QAlegendSuppliersPage {
 	WebElement Mobile;
 	@FindBy(xpath = "//button[text()='Save']")
 	WebElement savebutton;
-	@FindBy(xpath = "//input[@class='form-control input-sm']")
+	@FindBy(xpath = "(*//input[@class='form-control input-sm'])")
 	WebElement searchbox;
 	@FindBy(xpath = "//th[text()='Business Name']")
     WebElement businessnamemesseger;
@@ -60,7 +60,7 @@ public class QAlegendSuppliersPage {
 			return businessname;   
 	    
     }
-    public void clickOnSaveButton(String saveButton) {
+    public void clickOnSaveButton() {
 		savebutton.click();
 	}
     public String searchSupplierBox(String businessname) {

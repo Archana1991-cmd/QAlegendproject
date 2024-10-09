@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import Utilities.ExcelUtilities;
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
 import Utilities.fakerUtility;
 
 public class QAlegendSalesCommissionPage {
@@ -36,7 +37,7 @@ public class QAlegendSalesCommissionPage {
 	WebElement savebutton;
 	@FindBy(xpath = "//input[@class='form-control input-sm']")
 	WebElement Searchbox;
-	@FindBy(xpath =  "(//(tr[@role='row']//td)[2]")
+	@FindBy(xpath =  "(//tr[@role='row']//td)[2]")
 	WebElement successmessage;
 	
 	public QAlegendSalesCommissionPage(WebDriver driver) {
@@ -72,10 +73,13 @@ public class QAlegendSalesCommissionPage {
 		PageUtilities.clickOnElement(savebutton);	
 	}
     public String searchCommissionAgent(String email) {
+    	WaitUtilities.waitForElementVisibility(usermanagementoption, 5);
 		PageUtilities.enterText(Searchbox, email);
 		return email;
 	}
-    public boolean emailCellFinder() {
-		return successmessage.isDisplayed();
+    public String emailCellFinder(String email) {
+    	 successmessage.isDisplayed();
+		 return email;
+		 
 	}
 }

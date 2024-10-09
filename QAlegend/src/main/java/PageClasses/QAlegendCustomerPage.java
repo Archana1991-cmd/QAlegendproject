@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import Utilities.ExcelUtilities;
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
 import Utilities.fakerUtility;
 
 public class QAlegendCustomerPage {
@@ -20,7 +21,7 @@ public class QAlegendCustomerPage {
    WebElement customerOption;
    @FindBy(xpath="(//i[@class='fa fa-plus'])[1]")
    WebElement customerAddOption;
-   @FindBy(id = "contact_type")
+   @FindBy(xpath = "(//*[@id='contact_type'])[2]")
    WebElement Contacttypebox;
    @FindBy(id = "name")
    WebElement Namebox;
@@ -30,40 +31,47 @@ public class QAlegendCustomerPage {
    WebElement Mobilebox;
    @FindBy(xpath="//button[text()='Save']")
    WebElement Savebutton;
-   @FindBy(xpath = "//input[@class='form-control input-sm']")
+   @FindBy(xpath = "(*//input[@class='form-control input-sm'])")
    WebElement searchBox;
-   
+   @FindBy(xpath =  "(//tr[@role='row']//td)[2]")
+   WebElement nameBoxSuccessMessage;
    
    public QAlegendCustomerPage(WebDriver driver) {
 		 this.driver=driver;
 		 PageFactory.initElements(driver, this);
 	}
    public void clickOnContactsoption() {
-	    PageUtilities.clearText(contactsoption);
+	    contactsoption.clear();
     }
    public void clickOnCustomerOption() {
-		PageUtilities.clickOnElement(customerOption);
+		customerOption.click();
 	}
    public void clickOnCustomerAddOption() {
-	    PageUtilities.clickOnElement(customerAddOption);
+	    customerAddOption.click();
 	}
  
-	public String insertCustomers(String excelfilepath4, String sheetname) throws IOException {
+	public String insertCustomers(String excelfilepath4, String sheetname) throws IOException{
 		 String contacttype=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
     	 String name=ExcelUtilities.getString(1, 1, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
     	 String contactid=fakerUtility.randomNumberGenerator()+ExcelUtilities.getNumeric(1, 2, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
     	 String mobile=ExcelUtilities.getNumeric(1, 3, "//src//main//java//resources//addACustomer.xlsx","Sheet1");
-		PageUtilities.dropdownSelectByVisibleText(Contacttypebox, "Customers");
+    	PageUtilities.dropdownSelectByVisibleText(Contacttypebox, "Customers");
 		PageUtilities.enterText(Namebox, name);
 		PageUtilities.enterText(Contactidbox, contactid);
 		PageUtilities.enterText(Mobilebox, mobile);
 		return name;
 	}
     public void clickOnSaveButton() {
-		PageUtilities.clickOnElement(Savebutton);
+		Savebutton.click();
 	}
-	public String searchBox(String Namebox) {
-		PageUtilities.clickOnElement(searchBox);
-		return Namebox;
+	public String searchBox(String name) {
+		WaitUtilities.waitForElementVisibility(Contactidbox, 5);
+		PageUtilities.enterText(searchBox, name);
+		return name;
 	}
+	public String nameCellFinder(String name) {
+		nameBoxSuccessMessage.isDisplayed();
+		return name;
+	}
+	
 }

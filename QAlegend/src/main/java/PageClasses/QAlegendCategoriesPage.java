@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import Utilities.ExcelUtilities;
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
 
 public class QAlegendCategoriesPage {
            WebDriver driver;
@@ -25,9 +26,9 @@ public class QAlegendCategoriesPage {
            WebElement CategoriesCodebox;
            @FindBy(xpath = "//button[text()='Save']")
            WebElement savebutton;
-           @FindBy(xpath = "(//input[@class='form-control input-sm'])[1]")
-   	       WebElement searchbutton;
-           @FindBy(xpath = "(//input[@class='form-control input-sm'])[1]")
+           @FindBy(xpath = "//input[@class='form-control input-sm']")
+   	       WebElement searchBox;
+           @FindBy(xpath = "//th[@class='sorting_asc']")
    	       WebElement errorMessege;
    	    
            public QAlegendCategoriesPage(WebDriver driver) {
@@ -40,11 +41,11 @@ public class QAlegendCategoriesPage {
 		}
 
         public void clickOnCategoriesOption() {
-			  PageUtilities.clickOnElement(categoriesoption);
+			  categoriesoption.click();
 			
 		}
         public void clickOnAddButton() {
-			   PageUtilities.clickOnElement(addbutton);
+			  addbutton.click();
 			
 		}
 		public String insertOnCategoriesNameBox(String excelfilepath6, String sheetname) throws IOException {
@@ -60,14 +61,18 @@ public class QAlegendCategoriesPage {
 		}
 
         public void clickOnSaveButton() {
-			PageUtilities.clickOnElement(savebutton);
+			savebutton.click();
 			
 		}
-        public void enterUsersearch(String brandname) {
-		    PageUtilities.enterText(searchbutton,  brandname);
+        public String enterCategorysearchBox(String categoriesname) {
+        	WaitUtilities.waitForElementVisibility(searchBox, 5);
+		    PageUtilities.enterText(searchBox,  categoriesname);
+		    return categoriesname;
 	     }
 
-		public String NoMatchingRecordsFound() {
-			return (PageUtilities.getElementText(errorMessege));
+		public String brandNameBoxFinder(String categoriesname) {
+		    errorMessege.isDisplayed();
+		    return categoriesname;
 		}
+		 
 }

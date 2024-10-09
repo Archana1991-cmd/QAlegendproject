@@ -23,7 +23,7 @@ public class QAlegendCustomerGroupPage {
         WebElement CalculationPercentage;
         @FindBy(xpath = "//button[text()='Save']")
         WebElement savebutton;
-        @FindBy(xpath = "//input[@class='form-control input-sm']")
+        @FindBy(xpath = "(*//input[@class='form-control input-sm'])")
         WebElement searchTextBox;
         @FindBy(xpath = "//th[@class='sorting_asc']")
         WebElement Customergroupbox;
@@ -43,7 +43,6 @@ public class QAlegendCustomerGroupPage {
 			PageUtilities.clickOnElement(addoption);
 			
 		}
-
 		public String insertCustomerGroup(String excelfilepath8, String sheetname) throws IOException {
 			
 			String customergroupname=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addACustomerGroup.xlsx","Sheet1");
@@ -57,18 +56,17 @@ public class QAlegendCustomerGroupPage {
 			PageUtilities.clickOnElement(savebutton);
 			
 		}
-
-		public void searchcreateCustomerGroup(String customergroupname) {
+		public String searchBox(String customergroupname) {
 			WaitUtilities.waitForElementVisibility(searchTextBox, 5);
-			PageUtilities.clickOnElement(searchTextBox);
+			PageUtilities.enterText(searchTextBox,customergroupname); 
+			return customergroupname;
 		}
 
-		public void customerGroupNameSearch(String customergroupname2) {
-			PageUtilities.clickOnElement(Customergroupbox);
+		public String CustomergroupboxFinder(String customergroupname) {
+			Customergroupbox.isDisplayed();
+			return customergroupname;
+			
 		}
 
-		public String Customergroupbox(String customergroupname2) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 }

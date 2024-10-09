@@ -32,7 +32,7 @@ public class QAlegendBrandsPage {
 	    @FindBy(xpath = "//button[text()='Save']")
 	    WebElement savebutton;
 	    
-	    @FindBy(xpath = "(//input[@class='form-control input-sm'])[1]")
+	    @FindBy(xpath = "*//input[@class='form-control input-sm']")
 	    WebElement searchbox;
 	    
 	    @FindBy(xpath = "(//tr[@role='row']//td)[1]")
@@ -55,9 +55,9 @@ public class QAlegendBrandsPage {
 		}
 
 		public String insertOnBrandNameBox(String excelfilepath5, String sheetname) throws IOException {
-			 String brandnameBox=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addBrands.xlsx", "Sheet1");
-			 PageUtilities.enterText(BrandNameBox, brandnameBox);
-			 return brandnameBox;
+			 String brandname=ExcelUtilities.getString(1, 0, "//src//main//java//resources//addBrands.xlsx", "Sheet1");
+			 PageUtilities.enterText(BrandNameBox, brandname);
+			 return brandname;
 			
 		}
 		 public void insertOnshortdiscriptionBox() throws IOException {
@@ -69,15 +69,14 @@ public class QAlegendBrandsPage {
 			 PageUtilities.clickOnElement(savebutton);
 			
 		}
-	    public void enterUsersearch(String brandnameBox) {
+	    public void enterBrandsearchBox(String brandname) {
 	    	   
-			   PageUtilities.enterText(searchbox, brandnameBox);
+			   PageUtilities.enterText(searchbox, brandname);
 		}
 
-		public String NoMatchingRecordsFound() {
+		public String brandnameBoxFinder(String brandname) {
 			brandErrorMessege.isDisplayed();
-			return toString();
-			//return (PageUtilities.isElementDisplayed(brandErrorMessege));
+			return brandname;
 		}
 		
 }	

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import Utilities.ExcelUtilities;
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
+import Utilities.fakerUtility;
 
 public class QAlegendUnitsPage {
 	WebDriver driver;
@@ -29,8 +31,8 @@ public class QAlegendUnitsPage {
     @FindBy(xpath = "//button[text()='Save']")
     WebElement savebutton;
     @FindBy(xpath = "//input[@class='form-control input-sm']")
-    WebElement Searchbutton;
-    @FindBy(xpath = "//td[text()='No matching records found']")
+    WebElement searchBox;
+    @FindBy(xpath = "(//tr[@role='row']//td)[1]")
     WebElement errorMessege;
     
     
@@ -61,24 +63,23 @@ public class QAlegendUnitsPage {
 		 String allowdecimal=ExcelUtilities.getString(1, 2, "\\src\\main\\java\\resources\\addUnits.xlsx", "Sheet1");
 		PageUtilities.enterText(Name, name);
 		PageUtilities.enterText(Shortname, shortname);
-		PageUtilities.dropdownSelectByVisibleText(Allowdecimal, allowdecimal);
+		PageUtilities.dropdownSelectByVisibleText(Allowdecimal, "Yes");
 		return name;
 	}
 
 	public void clickOnSaveButton() {
-		PageUtilities.clickOnElement(savebutton);
-		
+		PageUtilities.clickOnElement(savebutton);	
+	}
+    public String enterUserSearchbutton(String name) {
+    	WaitUtilities.waitForElementVisibility(searchBox, 5);
+		PageUtilities.enterText(searchBox,name);
+		return name;
 	}
 
-	public void enterUserSearchbutton(String searchbutton) {
-		PageUtilities.enterText(Searchbutton,searchbutton);
-		
+	public String nameBoxFinder(String name) {
+		errorMessege.isDisplayed();
+		return name;
 	}
 
-
-	public String noMatchingRecordsFound() {
-		return (PageUtilities.getElementText(errorMessege));
-
-	}
 
 }
